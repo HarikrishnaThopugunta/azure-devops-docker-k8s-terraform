@@ -12,8 +12,8 @@ stages:
   - job: FirstJob
     steps: 
     - bash: echo Build FirstJob
-    - bash: $(PipelineLevelVariable)
-    - bash: $(environment)Stage
+    - bash: echo $(PipelineLevelVariable)
+    - bash: echo $(environment)Stage
 - stage: DevDeploy
   variables:
     environment: Dev 
@@ -22,7 +22,7 @@ stages:
   - job: FirstJob
     steps: 
     - bash: echo Build FirstJob
-    - bash: $(environment)Stage
+    - bash: echo $(environment)Stage
 - stage: UATDeploy4
   variables:
     environment: UAT
@@ -31,7 +31,7 @@ stages:
   - job: FirstJob
     steps: 
     - bash: echo Build FirstJob
-    - bash: $(environment)Stage
+    - bash: echo $(environment)Stage
 - stage: ProdDeploy
   variables:
     environment: Prod
@@ -43,4 +43,4 @@ stages:
   - job: FirstJob
     steps: 
     - bash: echo Build FirstJob
-    - bash: $(environment)Stage
+    - bash: echo $(environment)Stage
