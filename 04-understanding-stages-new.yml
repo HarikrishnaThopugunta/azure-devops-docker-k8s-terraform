@@ -18,8 +18,14 @@ stages:
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceBranchName)
     - bash: echo $(Build.SourceDirectory)
-    - bash: ls -R $(Build.DefaultWorkingDirectory)
+    - bash: echo $(Build.DefaultWorkingDirectory)
+    - bash: echo $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArtifcatoryStagingDirectory)
+    - bash: java --version 
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn --version
+
 # - stage: DevDeploy
 #   variables:
 #     environment: Dev 
