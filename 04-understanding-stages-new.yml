@@ -14,13 +14,12 @@ stages:
     - bash: echo Build FirstJob
     - bash: echo $(PipelineLevelVariable)
     - bash: echo $(environment)Stage
-    - bash: echo $(Build.BuildNumber)
-    - bash: echo $(Build.BuildId)
-    - bash: echo $(Build.SourceBranchName)
-    - bash: echo $(Build.SourceDirectory)
-    - bash: echo $(Build.DefaultWorkingDirectory)
-    - bash: echo $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtifactStagingDirectory)
+    - bash: echo Build Number $(Build.BuildNumber)
+    - bash: echo Build Id $(Build.BuildId)
+    - bash: echo Source Branch $(Build.SourceBranchName)
+    - bash: echo System Source Directory $(System.SourceDirectory)
+    - bash: echo System DefaultWorkingDirectiory $(System.DefaultWorkingDirectory)
+    - bash: echo Build Artifactory $(Build.ArtifactStagingDirectory)
     - bash: java --version 
     - bash: node --version
     - bash: python --version
