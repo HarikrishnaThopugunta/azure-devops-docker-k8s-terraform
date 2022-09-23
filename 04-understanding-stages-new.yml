@@ -17,9 +17,10 @@ stages:
     - bash: echo Build Number $(Build.BuildNumber)
     - bash: echo Build Id $(Build.BuildId)
     - bash: echo Source Branch $(Build.SourceBranchName)
-    - bash: echo System Source Directory $(System.SourceDirectory)
-    - bash: echo System DefaultWorkingDirectiory $(System.DefaultWorkingDirectory)
-    - bash: echo Build Artifactory $(Build.ArtifactStagingDirectory)
+    - bash: echo System Sources Directory $(System.SourcesDirectory)
+    - bash: echo Build Sources Directory $(Build.SourcesDirectory)
+    - bash: echo System Default Working Directiory $(System.DefaultWorkingDirectory)
+    - bash: echo Build Artifactory Staging Directory $(Build.ArtifactStagingDirectory)
     - bash: java --version 
     - bash: node --version
     - bash: python --version
