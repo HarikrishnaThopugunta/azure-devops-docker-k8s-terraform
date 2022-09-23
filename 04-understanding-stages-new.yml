@@ -25,7 +25,15 @@ stages:
     - bash: node --version
     - bash: python --version
     - bash: mvn --version
-
+    - bash: ls -R $(Build.ArtifcatoryStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDitrectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifcatoryStagingDirectory)'
+    - bash: ls -R $(Build.ArtifcatoryStagingDirectory)   
 # - stage: DevDeploy
 #   variables:
 #     environment: Dev 
