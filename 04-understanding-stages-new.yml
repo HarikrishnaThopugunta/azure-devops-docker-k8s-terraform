@@ -20,20 +20,20 @@ stages:
     - bash: echo $(Build.SourceDirectory)
     - bash: echo $(Build.DefaultWorkingDirectory)
     - bash: echo $(System.DefaultWorkingDirectory)
-    - bash: echo $(Build.ArtifcatoryStagingDirectory)
+    - bash: echo $(Build.ArtifactStagingDirectory)
     - bash: java --version 
     - bash: node --version
     - bash: python --version
     - bash: mvn --version
-    - bash: ls -R $(Build.ArtifcatoryStagingDirectory)
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDitrectory)'
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
         Contents: |
           **/*.yaml
           **/*.tf
-        TargetFolder: '$(Build.ArtifcatoryStagingDirectory)'
-    - bash: ls -R $(Build.ArtifcatoryStagingDirectory)   
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -R $(Build.ArtifactStagingDirectory)   
 # - stage: DevDeploy
 #   variables:
 #     environment: Dev 
