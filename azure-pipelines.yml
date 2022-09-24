@@ -19,7 +19,7 @@ stages:
           - bash: echo "Do the build"
   - stage: DevDeploy 
     jobs:   
-      - deployment: 
+      - deployment: DEV Deploy Job
         environment: DEV
         strategy:
           runOnce: 
@@ -28,7 +28,7 @@ stages:
                  - script: echo deploy to dev
   - stage: QADeploy 
     jobs:   
-      - deployment: 
+      - deployment: QA Deploy Job
         environment: QA
         strategy:
           runOnce: 
