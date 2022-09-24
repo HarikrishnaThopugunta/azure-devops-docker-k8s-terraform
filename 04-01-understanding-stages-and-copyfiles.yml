@@ -1,0 +1,71 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  variables:
+    environment: Build 
+  jobs: 
+  - job: FirstJob
+    steps: 
+    - bash: echo Build FirstJob
+    - bash: echo $(PipelineLevelVariable)
+    - bash: echo $(environment)Stage
+    - bash: echo Build Number $(Build.BuildNumber)
+    - bash: echo Build Id $(Build.BuildId)
+    - bash: echo Source Branch $(Build.SourceBranchName)
+    - bash: echo System Sources Directory $(System.SourcesDirectory)
+    - bash: echo Build Sources Directory $(Build.SourcesDirectory)
+    - bash: echo System Default Working Directiory $(System.DefaultWorkingDirectory)
+    - bash: echo Build Artifactory Staging Directory $(Build.ArtifactStagingDirectory)
+    - bash: java --version 
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn --version
+    - bash: ls -R $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - bash: ls -R $(Build.ArtifactStagingDirectory)   
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+# - stage: DevDeploy
+#   variables:
+#     environment: Dev 
+#   dependsOn: Build
+#   jobs: 
+#   - job: FirstJob
+#     steps: 
+#     - bash: echo Build FirstJob
+#     - bash: echo $(environment)Stage
+# - stage: UATDeploy4
+#   variables:
+#     environment: UAT
+#   dependsOn: Build
+#   jobs: 
+#   - job: FirstJob
+#     steps: 
+#     - bash: echo Build FirstJob
+#     - bash: echo $(environment)Stage
+# - stage: ProdDeploy
+#   variables:
+#     environment: Prod
+#   dependsOn:
+#   - Build
+#   - DevDeploy
+#   - UATDeploy4
+#   jobs: 
+#   - job: FirstJob
+#     steps: 
+#     - bash: echo Build FirstJob
+#     - bash: echo $(environment)Stage
